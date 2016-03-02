@@ -15,7 +15,7 @@
     <% @alfreds.each do |alfred| %>
       <tr>
         <td><%= alfred.id %></td>
-        <td><%= alfred.alfred %></td>
+        <td><%= link_to(alfred.alfred, alfred.alfred, :target => "_blank") %>
         <td><%=l alfred.created_at, format: :long %></td>
         <td>
           <%= link_to alfred_path(alfred), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>

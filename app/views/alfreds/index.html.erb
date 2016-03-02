@@ -1,25 +1,36 @@
-<h1>Listing alfreds</h1>
-
-<table>
+<%- model_class = Alfred -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Alfred %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Alfred</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:alfred) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @alfreds.each do |alfred| %>
       <tr>
+        <td><%= alfred.id %></td>
         <td><%= alfred.alfred %></td>
-        <td><%= link_to 'Show', alfred %></td>
-        <td><%= link_to 'Edit', edit_alfred_path(alfred) %></td>
-        <td><%= link_to 'Destroy', alfred, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l alfred.created_at, format: :long %></td>
+        <td>
+          <%= link_to alfred_path(alfred), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to alfred_path(alfred), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Alfred', new_alfred_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_alfred_path,
+            :class => 'btn btn-primary' %>

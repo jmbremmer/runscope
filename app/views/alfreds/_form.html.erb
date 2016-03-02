@@ -1,21 +1,16 @@
-<%= form_for(@alfred) do |f| %>
-  <% if @alfred.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@alfred.errors.count, "error") %> prohibited this alfred from being saved:</h2>
-
-      <ul>
-      <% @alfred.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @alfred, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :alfred, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :alfred, :class => 'text-field form-control' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :alfred %><br>
-    <%= f.text_field :alfred %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  alfreds_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

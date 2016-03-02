@@ -1,0 +1,2 @@
+module AlfredsHelper
+end
